@@ -57,12 +57,12 @@ var app = builder.Build();
 app.UseCors(builder.Environment.IsDevelopment() ? "AllowAll" : "AllowReactApp");  // Apply appropriate CORS policy
 
 // Use Swagger only in dev
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "IntPaymentAPI v1");
+    c.RoutePrefix = "swagger"; // So it loads at /swagger
+});
 // Middleware pipeline
 app.UseIpRateLimiting(); // Rate limiting middleware
 app.UseHttpsRedirection(); // Enforce HTTPS

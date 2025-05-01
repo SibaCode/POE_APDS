@@ -3099,11 +3099,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/sibahle/Desktop/Rosebank 2025/IntPaymentAPI/IntPaymentAPI.csproj",
+      "projectUniqueName": "/home/sibahle/Pictures/POE_APDS/backend/IntPaymentAPI.csproj",
       "projectName": "IntPaymentAPI",
-      "projectPath": "/home/sibahle/Desktop/Rosebank 2025/IntPaymentAPI/IntPaymentAPI.csproj",
+      "projectPath": "/home/sibahle/Pictures/POE_APDS/backend/IntPaymentAPI.csproj",
       "packagesPath": "/home/sibahle/.nuget/packages/",
-      "outputPath": "/home/sibahle/Desktop/Rosebank 2025/IntPaymentAPI/obj/",
+      "outputPath": "/home/sibahle/Pictures/POE_APDS/backend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/sibahle/.nuget/NuGet/NuGet.Config"

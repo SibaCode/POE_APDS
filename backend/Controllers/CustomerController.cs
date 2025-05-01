@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using BCrypt.Net;
 using System.Linq;
-using IntPaymentAPI; // Ensure this is pointing to the correct namespace where ApplicationDbContext is located.
+using IntPaymentAPI; 
 
 namespace IntPaymentAPI.Controllers
 {

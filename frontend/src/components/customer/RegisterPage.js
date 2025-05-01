@@ -24,48 +24,46 @@ function RegisterPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const fullNameRegex = /^[A-Za-z\s]{2,50}$/;
     const accountNumberRegex = /^[0-9]{6,20}$/;
     const idNumberRegex = /^[0-9]{6,20}$/;
-
+  
     if (!fullNameRegex.test(formData.fullName)) {
       setErrors({ FullName: ['Full Name is invalid. Only letters and spaces are allowed.'] });
       return;
     }
-
+  
     if (!accountNumberRegex.test(formData.accountNumber)) {
       setErrors({ AccountNumber: ['Account Number must be digits only.'] });
       return;
     }
-
+  
     if (!idNumberRegex.test(formData.idNumber)) {
       setErrors({ IdNumber: ['ID Number must be digits only.'] });
       return;
     }
-
+  
     if (formData.password.length < 6) {
       setErrors({ Password: ['Password must be at least 6 characters long.'] });
       return;
     }
-
-    const hashedPassword = await bcrypt.hash(formData.password, 10); 
-
-    const registrationData = { ...formData, password: hashedPassword };
-
+  
+    const registrationData = { ...formData };
+  
     try {
       const response = await fetch('https://localhost:7150/api/Customers/Register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(registrationData),
       });
-
+  
       if (response.ok) {
         navigate('/login');
       } else {
         const errorData = await response.json();
         if (errorData.errors) {
-          setErrors(errorData.errors); 
+          setErrors(errorData.errors);
         } else {
           alert(errorData.message || 'Registration failed');
         }
@@ -74,6 +72,7 @@ function RegisterPage() {
       alert('Something went wrong.');
     }
   };
+  
 
   return (
     <div className="register-container">
