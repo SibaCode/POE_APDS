@@ -24,22 +24,8 @@ const DashboardPage = () => {
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    if (user?.id) {
-      fetchTransactions();
-    }
-  }, [user]);
-  const fetchTransactions = async () => {
-  try {
-    const res = await axios.get(`${apiBaseUrl}/account/${user.accountNumber}`);
 
-    setTransactions(res.data);
-    console.log(transactions.length);
 
-  } catch (err) {
-    console.error(err);
-  }
-};
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -58,7 +44,6 @@ const DashboardPage = () => {
       setSuccess('Transaction created successfully');
       console.log('User details:', user.accountNumber);
       resetForm();
-      fetchTransactions();
     } catch (err) {
       console.error(err);
       setError('Transaction failed');
