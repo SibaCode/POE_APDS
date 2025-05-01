@@ -30,3 +30,20 @@
 ## 👤 Admin Demo Login  
 - **Username**: `admin`  
 - **Password**: `SibaAdmin`
+
+- 
+### 📝 CircleCI Configuration
+The CircleCI pipeline is defined in the `.github/workflows/sonarcloud.yml` file. This file contains the steps for:
+1. **Building the application** using Docker (or other specified services)
+2. **Running tests** to ensure code quality and functionality
+3. **Running SonarCloud analysis** to perform static code analysis and detect issues such as security vulnerabilities, bugs, and code smells.
+4. **Deploying the application** to Azure once the build and tests pass.
+
+### SonarCloud Integration
+The CircleCI configuration is connected to **SonarCloud** for automatic analysis of each build. The following steps outline how this is done:
+1. **Analysis Execution**: During the build process, the `sonar-scanner` tool is executed as part of the pipeline, which sends the source code to SonarCloud for analysis.
+2. **Code Quality & Security**: SonarCloud provides a detailed analysis report, which is accessible via the SonarCloud dashboard. It checks for:
+   - Bugs
+   - Vulnerabilities
+   - Code smells
+   - Test coverage
