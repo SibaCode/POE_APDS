@@ -11,25 +11,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: '11'
-      - name: Install SonarScanner
-        run: |
-          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2858-linux.zip
-          unzip sonar-scanner-cli-4.8.0.2858-linux.zip
-          sudo mv sonar-scanner-4.8.0.2858-linux /opt/sonar-scanner
-          echo "export PATH=$PATH:/opt/sonar-scanner/bin" >> ~/.bashrc
-          source ~/.bashrc
       - name: SonarCloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_PROJECT_KEY: your-project-key
         run: |
-          sonar-scanner \
+          docker run \
+            -e SONAR_HOST_URL=https://sonarcloud.io \
+            -e SONAR_LOGIN=$SONAR_TOKEN \
+            -v $(pwd):/usr/src \
+            sonarsource/sonar-scanner-cli \
             -Dsonar.projectKey=SibaCode_POE_APDS \
             -Dsonar.organization=sibacode \
-            -Dsonar.sources=. \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=$SONAR_TOKEN
+            -Dsonar.sources=/usr/src
