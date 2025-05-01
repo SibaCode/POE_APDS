@@ -23,32 +23,31 @@ export const AuthProvider = ({ children }) => {
     const endpoint = userType === 'employee'
       ? 'https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/api/Employee/login'
       : 'https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/api/Customers/login';
-
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(credentials),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Login failed');
+  
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Login failed:', errorData);  // Log the error message
+        throw new Error(errorData?.message || 'Unknown error');
+      }
+  
+      const data = await response.json();
+      return data;  // Return the successful login response data
+  
+    } catch (error) {
+      console.error('Error during login:', error);  // Log the error
+      throw error;  // Re-throw the error
     }
-
-    const data = await response.json();
-    localStorage.setItem('token', data.token);
-
-    const loggedInUser = {
-      id: data.customer.id,
-      fullName: data.customer.fullName,
-      accountNumber: data.customer.accountNumber,
-      role: 'customer',
-    };
-
-    setUser(loggedInUser);
-    navigate('/dashboard');
-    return loggedInUser;
   };
+  
 
   const logout = () => {
     setUser(null);
