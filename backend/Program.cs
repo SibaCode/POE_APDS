@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using IntPaymentAPI.Models;
 using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Identity;
-using IntPaymentAPI; 
+using IntPaymentAPI; // Required for accessing ApplicationDbContext
 
 var builder = WebApplication.CreateBuilder(args);
 
