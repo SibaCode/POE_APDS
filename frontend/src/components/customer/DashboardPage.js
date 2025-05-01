@@ -23,24 +23,25 @@ const DashboardPage = () => {
   const [error, setError] = useState('');
   const [transactions, setTransactions] = useState([]); // Declare transactions state
 
+  // Function to fetch transactions
+  const fetchTransactions = async () => {
+    try {
+      const response = await axios.get(apiBaseUrl, {
+        params: { accountNumber: user.accountNumber }, // Pass account number as a query parameter
+      });
+      setTransactions(response.data); // Set the fetched transactions to state
+    } catch (err) {
+      console.error('Error fetching transactions:', err);
+      setError('Failed to fetch transaction history.');
+    }
+  };
+
   // Fetch transactions when the component mounts or the user changes
   useEffect(() => {
-    const fetchTransactions = async () => {
-      try {
-        const response = await axios.get(apiBaseUrl, {
-          params: { accountNumber: user.accountNumber },
-        });
-        setTransactions(response.data);
-      } catch (err) {
-        console.error('Error fetching transactions:', err);
-        setError('Failed to fetch transaction history.');
-      }
-    };
-
     if (user?.accountNumber) {
-      fetchTransactions();
+      fetchTransactions(); // Call fetchTransactions when the user is available
     }
-  }, [user?.accountNumber]); // Re-fetch when user changes
+  }, [user?.accountNumber]); // Re-fetch when the user changes
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
