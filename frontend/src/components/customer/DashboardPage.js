@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar';
 import Notification from './../../Notification';
@@ -17,14 +17,30 @@ const DashboardPage = () => {
     swiftCode: '',
     status: '',
     date: new Date().toISOString(),
-    
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
+  const [transactions, setTransactions] = useState([]); // Declare transactions state
 
+  // Fetch transactions when the component mounts or the user changes
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const response = await axios.get(apiBaseUrl, {
+          params: { accountNumber: user.accountNumber },
+        });
+        setTransactions(response.data);
+      } catch (err) {
+        console.error('Error fetching transactions:', err);
+        setError('Failed to fetch transaction history.');
+      }
+    };
 
-
+    if (user?.accountNumber) {
+      fetchTransactions();
+    }
+  }, [user?.accountNumber]); // Re-fetch when user changes
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -43,12 +59,13 @@ const DashboardPage = () => {
       setSuccess('Transaction created successfully');
       console.log('User details:', user.accountNumber);
       resetForm();
+      fetchTransactions(); // Re-fetch transactions after creating a new one
     } catch (err) {
       console.error(err);
       setError('Transaction failed');
     }
   };
-  
+
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
     setForm({
@@ -82,39 +99,38 @@ const DashboardPage = () => {
         {success && <Notification message={success} type="success" />}
         {error && <Notification message={error} type="error" />}
         <h3>Transaction History</h3>
-<button className="verify-btn" onClick={toggleModal}>Add New Transaction</button>
+        <button className="verify-btn" onClick={toggleModal}>Add New Transaction</button>
 
-{transactions.length === 0 && !error ? (
-  <p>You have no transactions yet.</p>
-) : (
-  <table border="1" width="100%">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Amount</th>
-        <th>Currency</th>
-        <th>SWIFT Code</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      {transactions.map((tx) => (
-        <tr key={tx.id}>
-          <td>{tx.id}</td>
-          <td>{tx.amount}</td>
-          <td>{tx.currency}</td>
-          <td>{tx.swiftCode}</td>
-          <td>
-            <span className={`status-pill ${tx.status.toLowerCase()}`}>
-              {tx.status === 'Verified' ? 'Verified' : 'Pending'}
-            </span>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-)}
-
+        {transactions.length === 0 && !error ? (
+          <p>You have no transactions yet.</p>
+        ) : (
+          <table border="1" width="100%">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Amount</th>
+                <th>Currency</th>
+                <th>SWIFT Code</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {transactions.map((tx) => (
+                <tr key={tx.id}>
+                  <td>{tx.id}</td>
+                  <td>{tx.amount}</td>
+                  <td>{tx.currency}</td>
+                  <td>{tx.swiftCode}</td>
+                  <td>
+                    <span className={`status-pill ${tx.status.toLowerCase()}`}>
+                      {tx.status === 'Verified' ? 'Verified' : 'Pending'}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
 
         {isModalOpen && (
           <div className="modal">
