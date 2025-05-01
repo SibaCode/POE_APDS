@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar';
 import Notification from './../../Notification';
@@ -10,7 +10,6 @@ const apiBaseUrl = 'https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azu
 const DashboardPage = () => {
   const { user } = useAuth();
 
-  const [transactions, setTransactions] = useState([]);
   const [form, setForm] = useState({
     id: 0,
     amount: '',

@@ -22,9 +22,13 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userData = await login(formData, 'customer');
+      // Perform login and clear error if successful
+      await login(formData, 'customer'); 
       setError('');
+      // Optionally, redirect the user to the dashboard or another page on success
+      // e.g., navigate('/dashboard');
     } catch (err) {
+      // Display error message if login fails
       setError(err.message || 'Login failed');
     }
   };
