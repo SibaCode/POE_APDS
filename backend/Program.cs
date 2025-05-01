@@ -26,7 +26,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp", policy =>
     {
         policy.WithOrigins(
-            "http://localhost:3000",  // Local React dev
+            "https://sibareactfe-hzcnaxcfdqbyaddc.southafricanorth-01.azurewebsites.net/",  // Local React dev
             "https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net" // Your deployed React frontend
         )
         .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "HesI5UIpuYGMgbjNDRe0pHRCUkGhJfYLtOYcIOgznz0=",
+  "Source": "IntPaymentAPI",
+  "BasePath": "_content/IntPaymentAPI",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
