@@ -1,4 +1,5 @@
 /home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/IntPaymentAPI
+/home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/publish/publish/publish/web.config
 /home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/publish/publish/web.config
 /home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/publish/web.config
 /home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/web.config
@@ -26,6 +27,10 @@
 /home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/publish/publish/appsettings.json
 /home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/publish/publish/IntPaymentAPI.deps.json
 /home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/publish/publish/IntPaymentAPI.runtimeconfig.json
+/home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/publish/publish/publish/appsettings.Development.json
+/home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/publish/publish/publish/appsettings.json
+/home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/publish/publish/publish/IntPaymentAPI.deps.json
+/home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/publish/publish/publish/IntPaymentAPI.runtimeconfig.json
 /home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/IntPaymentAPI.dll
 /home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/IntPaymentAPI.runtimeconfig.json
 /home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/IntPaymentAPI.pdb

@@ -96,3 +96,8 @@
 /home/sibahle/Videos/POE_APDS/backend/obj/Release/net6.0/IntPaymentAPI.pdb
 /home/sibahle/Videos/POE_APDS/backend/obj/Release/net6.0/IntPaymentAPI.genruntimeconfig.cache
 /home/sibahle/Videos/POE_APDS/backend/obj/Release/net6.0/ref/IntPaymentAPI.dll
+/home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/publish/publish/appsettings.Development.json
+/home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/publish/publish/appsettings.json
+/home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/publish/publish/IntPaymentAPI.deps.json
+/home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/publish/publish/IntPaymentAPI.runtimeconfig.json
+/home/sibahle/Videos/POE_APDS/backend/bin/Release/net6.0/publish/publish/publish/publish/publish/publish/web.config

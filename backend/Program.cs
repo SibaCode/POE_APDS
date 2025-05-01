@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Set specific URL (ensure this matches your desired port)
 builder.WebHost.UseUrls("https://localhost:7150");
 
-// Register the DbContext
+// Register services
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -26,12 +26,12 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp", policy =>
     {
         policy.WithOrigins(
-            "https://sibareactfe-hzcnaxcfdqbyaddc.southafricanorth-01.azurewebsites.net",
-            "https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net"
-        )
-        .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-        .WithHeaders("Content-Type", "Authorization", "Accept", "Origin")
-        .AllowCredentials();
+                "https://sibareactfe-hzcnaxcfdqbyaddc.southafricanorth-01.azurewebsites.net",
+                "https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net"
+            )
+            .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+            .WithHeaders("Content-Type", "Authorization", "Accept", "Origin")
+            .AllowCredentials();
     });
 });
 
@@ -40,12 +40,13 @@ var app = builder.Build();
 // Middleware pipeline
 app.UseHttpsRedirection();
 
+// CORS should come after routing and before authorization
 app.UseRouting();
-
 app.UseCors("AllowReactApp"); // 🔥 CORS must come after routing and before auth
 
 app.UseAuthorization();
 
+// Enable Swagger UI
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
