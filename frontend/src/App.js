@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Routes, Route, useNavigate , Navigate} from 'react-router-dom';
 import DashboardPage from './components/customer/DashboardPage';
 import RegisterPage from './components/customer/RegisterPage';
@@ -11,7 +10,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from  './AuthContext.js';
 
 function App() {
-  const navigate = useNavigate();
 
   return (
     <div className="App">

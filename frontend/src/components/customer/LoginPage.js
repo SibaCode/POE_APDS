@@ -4,7 +4,6 @@ import { useAuth } from '../../AuthContext';
 import './../customer/css/LoginPage.css';
 
 function LoginPage() {
-  const navigate = useNavigate();
   const { login } = useAuth();
 
   const [formData, setFormData] = useState({
