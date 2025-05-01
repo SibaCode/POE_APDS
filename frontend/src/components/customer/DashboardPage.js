@@ -6,7 +6,6 @@ import { useAuth } from '../../../src/AuthContext';
 import './../customer/css/DashboardPage.css';
 
 const apiBaseUrl = 'https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/api/TransactionDetails';
-const apiBaseUrl1 = 'https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/api/TransactionDetails';
 
 const DashboardPage = () => {
   const { user } = useAuth();
@@ -66,20 +65,6 @@ const DashboardPage = () => {
     }
   };
   
-
-  
-
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`${apiBaseUrl}/${id}`);
-      setSuccess('Transaction deleted');
-      fetchTransactions();
-    } catch (err) {
-      console.error(err);
-      setError('Failed to delete transaction');
-    }
-  };
-
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
     setForm({

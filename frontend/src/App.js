@@ -1,10 +1,9 @@
-import { Routes, Route, useNavigate , Navigate} from 'react-router-dom';
+import { Routes, Route , Navigate} from 'react-router-dom';
 import DashboardPage from './components/customer/DashboardPage';
 import RegisterPage from './components/customer/RegisterPage';
 import LoginPage from './components/customer/LoginPage';
 import EmployeeLoginPage from './components/employee/EmployeeLoginPage';
 import EmployeeDashboardPage from './components/employee/EmployeeDashboardPage'; 
-import ProtectedRoute from './components/ProtectedRoute'; 
 
 import { AuthProvider } from  './AuthContext.js';
 

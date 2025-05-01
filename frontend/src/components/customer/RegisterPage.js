@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './../customer/css/RegisterPage.css';
 import { useNavigate } from 'react-router-dom';
-import bcrypt from 'bcryptjs';
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -14,7 +13,6 @@ function RegisterPage() {
   });
 
   const [errors, setErrors] = useState({});
-  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
