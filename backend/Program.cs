@@ -29,16 +29,23 @@ builder.Services.AddCors(options =>
             "http://localhost:3000",  // Local React dev
             "https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net" // Your deployed React frontend
         )
-        .WithHeaders("Content-Type", "Authorization", "Accept", "Origin") // Specify headers
-        .AllowAnyMethod() // Allow GET, POST, PUT, DELETE, OPTIONS
-        .AllowCredentials(); // Allow credentials (cookies, tokens)
+        .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+        .WithHeaders("Content-Type", "Authorization", "Accept", "Origin")
+        .AllowCredentials();
     });
 });
 var app = builder.Build();
 
 // Apply the CORS policy for all incoming requests
 app.UseCors("AllowReactApp");  // Ensure this is applied before routing
-
+app.Use((context, next) =>
+{
+    context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+    context.Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    context.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Authorization, Accept, Origin");
+    context.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
+    return next();
+});
 // Use Swagger only in dev
 app.UseSwagger();
 app.UseSwaggerUI(c =>
