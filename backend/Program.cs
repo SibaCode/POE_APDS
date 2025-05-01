@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using IntPaymentAPI.Models;
 using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Identity;
-using IntPaymentAPI; // This is required to access ApplicationDbContext
+using IntPaymentAPI; // Required for accessing ApplicationDbContext
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +11,7 @@ builder.WebHost.UseUrls("https://localhost:7150");
 
 // Register the DbContext for Identity and Payments (with correct connection string)
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))); // Make sure DefaultConnection is in your appsettings.json
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))); // Ensure DefaultConnection is in your appsettings.json
 
 // Register Controllers (for all API routes)
 builder.Services.AddControllers();
@@ -32,10 +32,15 @@ builder.Services.AddCors(options =>
 
     // Policy to restrict CORS to only your React app (for production)
     options.AddPolicy("AllowReactApp", policy =>
-        policy
-            .WithOrigins("http://localhost:3000") // React App URL
-            .AllowAnyMethod()
-            .AllowAnyHeader());
+    {
+        var frontendUrl = builder.Environment.IsDevelopment()
+            ? "http://localhost:3001" // React App URL in development
+            : "https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net"; // Replace with the actual production frontend URL
+        
+        policy.WithOrigins(frontendUrl) // React App URL
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
 });
 
 // Add rate limiting
@@ -63,6 +68,7 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "IntPaymentAPI v1");
     c.RoutePrefix = "swagger"; // So it loads at /swagger
 });
+
 // Middleware pipeline
 app.UseIpRateLimiting(); // Rate limiting middleware
 app.UseHttpsRedirection(); // Enforce HTTPS
