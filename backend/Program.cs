@@ -20,8 +20,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Add CORS - Define both the "AllowAll" and "AllowReactApp" policies
-  builder.Services.AddCors(options =>
+// Add CORS - Define both the "AllowReactApp" and "AllowAll" policies
+builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
     {
@@ -33,6 +33,7 @@ builder.Services.AddSwaggerGen();
         .AllowAnyHeader();
     });
 });
+
 // Add rate limiting
 builder.Services.AddOptions();
 builder.Services.AddMemoryCache();
@@ -49,15 +50,18 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 var app = builder.Build();
 
 // Use CORS policies
-app.UseCors(builder.Environment.IsDevelopment() ? "AllowAll" : "AllowReactApp");  // Apply appropriate CORS policy
+app.UseCors("AllowReactApp"); // Always use this policy
 
 // Use Swagger only in dev
-app.UseSwagger();
-app.UseSwaggerUI(c =>
+if (builder.Environment.IsDevelopment())
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "IntPaymentAPI v1");
-    c.RoutePrefix = "swagger"; // So it loads at /swagger
-});
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "IntPaymentAPI v1");
+        c.RoutePrefix = "swagger"; // So it loads at /swagger
+    });
+}
 
 // Middleware pipeline
 app.UseIpRateLimiting(); // Rate limiting middleware
