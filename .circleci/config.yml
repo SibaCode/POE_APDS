@@ -12,11 +12,12 @@ jobs:
       - image: cimg/openjdk:17.0
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: Run SonarCloud Scan
           command: |
             docker run \
-              -e SONAR_TOKEN=$SONAR_TOKEN \
+              -e SONAR_TOKEN=${SONAR_TOKEN} \
               -e SONAR_HOST_URL=https://sonarcloud.io \
               -v $(pwd):/usr/src \
               sonarsource/sonar-scanner-cli \
