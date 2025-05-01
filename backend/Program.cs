@@ -21,28 +21,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add CORS - Define both the "AllowAll" and "AllowReactApp" policies
-builder.Services.AddCors(options =>
+  builder.Services.AddCors(options =>
 {
-    // Policy to allow all origins, methods, and headers (for local development)
-    options.AddPolicy("AllowAll", policy =>
-        policy
-            .AllowAnyOrigin()   // Allow any origin
-            .AllowAnyMethod()   // Allow any HTTP method
-            .AllowAnyHeader()); // Allow any header
-
-    // Policy to restrict CORS to only your React app (for production)
     options.AddPolicy("AllowReactApp", policy =>
     {
-        var frontendUrl = builder.Environment.IsDevelopment()
-            ? "http://localhost:3001" // React App URL in development
-            : "https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net"; // Replace with the actual production frontend URL
-        
-        policy.WithOrigins(frontendUrl) // React App URL
-              .AllowAnyMethod()
-              .AllowAnyHeader();
+        policy.WithOrigins(
+            "http://localhost:3001", // Local React dev
+            "https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net" // Your actual deployed React frontend
+        )
+        .AllowAnyMethod()
+        .AllowAnyHeader();
     });
 });
-
 // Add rate limiting
 builder.Services.AddOptions();
 builder.Services.AddMemoryCache();
