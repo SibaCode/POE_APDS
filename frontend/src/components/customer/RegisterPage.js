@@ -67,7 +67,7 @@ function RegisterPage() {
         }
       }
     } catch (err) {
-      alert('Something went wrong test.');
+      alert('Something went wrong testSiba.');
     }
   };
   
