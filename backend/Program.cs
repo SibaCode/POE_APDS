@@ -29,12 +29,11 @@ builder.Services.AddCors(options =>
             "http://localhost:3000",  // Local React dev
             "https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net" // Your deployed React frontend
         )
+        .WithHeaders("Content-Type", "Authorization", "Accept", "Origin") // Specify headers
         .AllowAnyMethod() // Allow GET, POST, PUT, DELETE, OPTIONS
-        .AllowAnyHeader() // Allow all headers (Content-Type, Authorization, Accept, etc.)
         .AllowCredentials(); // Allow credentials (cookies, tokens)
     });
 });
-
 var app = builder.Build();
 
 // Apply the CORS policy for all incoming requests
