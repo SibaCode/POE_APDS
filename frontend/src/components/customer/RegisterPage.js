@@ -52,7 +52,7 @@ function RegisterPage() {
     const registrationData = { ...formData };
   
     try {
-      const response = await fetch('https://localhost:7150/api/Customers/Register', {
+      const response = await fetch('https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/api/Customers/Register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(registrationData),

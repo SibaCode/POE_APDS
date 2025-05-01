@@ -17,7 +17,7 @@ const EmployeeLoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('https://localhost:7150/api/employee/login', form); 
+      const res = await axios.post('https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/api/employee/login', form); 
       if (res.data.token) {
         localStorage.setItem('employeeToken', res.data.token);
         navigate('/employee-dashboard');  

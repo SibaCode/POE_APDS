@@ -5,8 +5,8 @@ import Notification from './../../Notification';
 import { useAuth } from '../../../src/AuthContext';
 import './../customer/css/DashboardPage.css';
 
-const apiBaseUrl = 'https://localhost:7150/api/TransactionDetails';
-const apiBaseUrl1 = 'https://localhost:7150/api/TransactionDetails';
+const apiBaseUrl = 'https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/api/TransactionDetails';
+const apiBaseUrl1 = 'https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/api/TransactionDetails';
 
 const DashboardPage = () => {
   const { user } = useAuth();

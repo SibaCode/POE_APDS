@@ -21,8 +21,8 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (credentials, userType = 'customer') => {
     const endpoint = userType === 'employee'
-      ? 'https://localhost:7150/api/Employee/login'
-      : 'https://localhost:7150/api/Customers/login';
+      ? 'https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/api/Employee/login'
+      : 'https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/api/Customers/login';
 
     const response = await fetch(endpoint, {
       method: 'POST',

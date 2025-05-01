@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 import './../employee/css/EmployeeDashboardPage.css';
 import Navbar from '../../components/Navbar';
 
-const apiBaseUrl = 'https://localhost:7150/api/TransactionDetails';
+const apiBaseUrl = 'https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/api/TransactionDetails';
 
 const EmployeeDashboardPage = () => {
   const [transactions, setTransactions] = useState([]);
@@ -37,7 +37,7 @@ const EmployeeDashboardPage = () => {
   };
   const handleSendToSWIFT = async (tx) => {
     try {
-      const response = await fetch(`https://localhost:7150/api/TransactionDetails/submit/${tx.id}`, {
+      const response = await fetch(`https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/api/TransactionDetails/submit/${tx.id}`, {
         method: 'PUT'
       });
       if (response.ok) {
@@ -70,7 +70,7 @@ const EmployeeDashboardPage = () => {
     }
   
     try {
-      const response = await fetch(`https://localhost:7150/api/TransactionDetails/verify/${selectedTransaction.id}`, {
+      const response = await fetch(`https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/api/TransactionDetails/verify/${selectedTransaction.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
       });

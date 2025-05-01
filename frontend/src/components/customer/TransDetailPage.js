@@ -4,7 +4,7 @@ import Notification from './../../Notification';
 import Navbar from '../../components/Navbar';
 import './../customer/css/DashboardPage.css';
 
-const apiBaseUrl = 'https://localhost:7150/api/TransactionDetails'; 
+const apiBaseUrl = 'https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/api/TransactionDetails'; 
 
 const TransDetailPage = () => {
   const [transactions, setTransactions] = useState([]);
