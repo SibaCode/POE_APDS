@@ -20,56 +20,39 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Add CORS - Define both the "AllowReactApp" and "AllowAll" policies
+// Add CORS - Define the "AllowReactApp" policy with explicit headers
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
     {
         policy.WithOrigins(
-            "http://localhost:3001", // Local React dev
-            "https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net" // Your actual deployed React frontend
+            "http://localhost:3000",  // Local React dev
+            "https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net" // Your deployed React frontend
         )
-        .AllowAnyMethod()
-        .AllowAnyHeader();
+        .AllowAnyMethod() // Allow GET, POST, PUT, DELETE, OPTIONS
+        .AllowAnyHeader() // Allow all headers (Content-Type, Authorization, Accept, etc.)
+        .AllowCredentials(); // Allow credentials (cookies, tokens)
     });
 });
 
-// Add rate limiting
-builder.Services.AddOptions();
-builder.Services.AddMemoryCache();
-builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
-builder.Services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
-builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
-builder.Services.AddInMemoryRateLimiting(); // Ensure this is set up correctly
-
-// Configure Identity for authentication (if needed)
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders();
-
 var app = builder.Build();
 
-// Use CORS policies
-app.UseCors("AllowReactApp"); // Always use this policy
+// Apply the CORS policy for all incoming requests
+app.UseCors("AllowReactApp");  // Ensure this is applied before routing
 
 // Use Swagger only in dev
-if (builder.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "IntPaymentAPI v1");
-        c.RoutePrefix = "swagger"; // So it loads at /swagger
-    });
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "IntPaymentAPI v1");
+    c.RoutePrefix = "swagger"; // So it loads at /swagger
+});
 
 // Middleware pipeline
-app.UseIpRateLimiting(); // Rate limiting middleware
 app.UseHttpsRedirection(); // Enforce HTTPS
 app.UseRouting();
 app.UseAuthorization();
-
-// Ensure that Identity is enabled if you want authentication
 app.MapControllers(); // Map the controllers to endpoints
 
-app.Run();  // Start the application
+// Start the application
+app.Run();
