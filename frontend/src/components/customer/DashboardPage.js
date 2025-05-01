@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar';
 import Notification from './../../Notification';
@@ -11,37 +11,32 @@ const DashboardPage = () => {
   const { user } = useAuth();
 
   const [form, setForm] = useState({
-    id: 0,
     amount: '',
     currency: '',
     swiftCode: '',
-    status: '',
-    date: new Date().toISOString(),
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
-  const [transactions, setTransactions] = useState([]); // Declare transactions state
+  const [transactions, setTransactions] = useState([]);
 
-  // Function to fetch transactions
-  const fetchTransactions = async () => {
-    try {
-      const response = await axios.get(apiBaseUrl, {
-        params: { accountNumber: user.accountNumber }, // Pass account number as a query parameter
-      });
-      setTransactions(response.data); // Set the fetched transactions to state
-    } catch (err) {
-      console.error('Error fetching transactions:', err);
-      setError('Failed to fetch transaction history.');
-    }
-  };
-
-  // Fetch transactions when the component mounts or the user changes
-  useEffect(() => {
+  const fetchTransactions = useCallback(async () => {
     if (user?.accountNumber) {
-      fetchTransactions(); // Call fetchTransactions when the user is available
+      try {
+        const response = await axios.get(`${apiBaseUrl}/account/${user.accountNumber}`);
+        setTransactions(response.data);
+      } catch (err) {
+        console.error('Error fetching transactions:', err);
+        setError('Failed to fetch transaction history.');
+      }
+    } else {
+      setError('Account number not found.');
     }
-  }, [user?.accountNumber]); // Re-fetch when the user changes
+  }, [user?.accountNumber]);
+
+  useEffect(() => {
+    fetchTransactions();
+  }, [fetchTransactions, user?.accountNumber]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -58,9 +53,8 @@ const DashboardPage = () => {
       };
       await axios.post(apiBaseUrl, payload);
       setSuccess('Transaction created successfully');
-      console.log('User details:', user.accountNumber);
-      resetForm();
       fetchTransactions(); // Re-fetch transactions after creating a new one
+      resetForm();
     } catch (err) {
       console.error(err);
       setError('Transaction failed');
@@ -70,23 +64,17 @@ const DashboardPage = () => {
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
     setForm({
-      id: 0,
       amount: '',
       currency: '',
       swiftCode: '',
-      status: 'Pending',
-      date: new Date().toISOString(),
     });
   };
 
   const resetForm = () => {
     setForm({
-      id: 0,
       amount: '',
       currency: '',
       swiftCode: '',
-      status: 'Pending',
-      date: new Date().toISOString(),
     });
     setIsModalOpen(false);
   };
