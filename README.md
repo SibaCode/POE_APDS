@@ -10,6 +10,10 @@
 - **Frontend Customer**: [Live React App](https://sibareactfe-hzcnaxcfdqbyaddc.southafricanorth-01.azurewebsites.net/login)
 - **Frontend Admin**: [Live React App](https://sibareactfe-hzcnaxcfdqbyaddc.southafricanorth-01.azurewebsites.net/employee)  
 - **Swagger Docs**: [Swagger UI]([https://your-backend-link/swagger](https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/swagger/index.html))  
+---
+## 👤 Admin Demo Login  
+- **Username**: `admin`  
+- **Password**: `SibaAdmin`
 
 ---
 
@@ -26,10 +30,6 @@
 ## 🧪 CI/CD Pipeline   
 - Includes SonarCloud integration for code quality and security analysis  
 
----
-## 👤 Admin Demo Login  
-- **Username**: `admin`  
-- **Password**: `SibaAdmin`
 
 - 
 ### 📝 CircleCI Configuration
