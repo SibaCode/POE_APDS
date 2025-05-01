@@ -27,5 +27,6 @@
 - Includes SonarCloud integration for code quality and security analysis  
 
 ---
-
-## 📂 Folder Structure  
+## 👤 Admin Demo Login  
+- **Username**: `admin`  
+- **Password**: `SibaAdmin`
