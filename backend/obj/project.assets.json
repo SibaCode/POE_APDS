@@ -3099,11 +3099,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/sibahle/Pictures/POE_APDS/backend/IntPaymentAPI.csproj",
+      "projectUniqueName": "/home/sibahle/Videos/POE_APDS/backend/IntPaymentAPI.csproj",
       "projectName": "IntPaymentAPI",
-      "projectPath": "/home/sibahle/Pictures/POE_APDS/backend/IntPaymentAPI.csproj",
+      "projectPath": "/home/sibahle/Videos/POE_APDS/backend/IntPaymentAPI.csproj",
       "packagesPath": "/home/sibahle/.nuget/packages/",
-      "outputPath": "/home/sibahle/Pictures/POE_APDS/backend/obj/",
+      "outputPath": "/home/sibahle/Videos/POE_APDS/backend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/sibahle/.nuget/NuGet/NuGet.Config"
