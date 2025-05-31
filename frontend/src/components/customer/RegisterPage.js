@@ -36,8 +36,7 @@ function RegisterPage() {
       setErrors({ AccountNumber: ['Account Number must be digits only.'] });
       return;
     }
-  
-    if (!idNumberRegex.test(formData.idNumber)) {
+  if (!idNumberRegex.test(formData.idNumber)) {
       setErrors({ IdNumber: ['ID Number must be digits only.'] });
       return;
     }

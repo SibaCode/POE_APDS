@@ -4,5 +4,6 @@
         ".vscode{,/**}"
     ],
     "appService.defaultWebAppToDeploy": "/subscriptions/4dd12a2f-0a9e-4b69-ba01-a9d26e10e611/resourceGroups/AZ-JHB-RSG-RCNA-ST10489601-TER/providers/Microsoft.Web/sites/SibaReactFE",
-    "appService.deploySubpath": "build"
+    "appService.deploySubpath": "build",
+    "appService.showBuildDuringDeployPrompt": false
 }
