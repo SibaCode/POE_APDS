@@ -1,1 +1,26 @@
 
+name: SonarCloud Scan
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: SonarCloud Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          docker run \
+            -e SONAR_TOKEN=$SONAR_TOKEN \
+            -e SONAR_HOST_URL=https://sonarcloud.io \
+            -v $(pwd):/usr/src \
+            sonarsource/sonar-scanner-cli \
+            -Dsonar.projectKey=SibaCode_POE_APDS \
+            -Dsonar.organization=sibacode \
+            -Dsonar.sources=/usr/src
