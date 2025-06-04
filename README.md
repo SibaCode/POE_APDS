@@ -13,7 +13,6 @@
 - **Password**: `SibaAdmin`
 
 ---
-
 ## 🔒 Security Features  
 - Passwords are hashed and salted using ASP.NET Identity  
 - Input validation using RegEx to whitelist characters  
@@ -44,3 +43,18 @@ The CircleCI configuration is connected to **SonarCloud** for automatic analysis
    - Vulnerabilities
    - Code smells
    - Test coverage
+
+## ▶️ How to Run the App
+
+### 🖥 Backend (ASP.NET Core)
+
+```bash
+cd IntPaymentAPI
+dotnet run --project IntPaymentAPI.csproj
+```
+### 🖥 Frontend (React)
+```bash
+cd payment-portal
+npm install
+npm start
+
