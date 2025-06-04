@@ -6,11 +6,8 @@
 
 ---
 
-## 🚀 Live Demo  
-- **Frontend Customer**: [Live React App](https://sibareactfe-hzcnaxcfdqbyaddc.southafricanorth-01.azurewebsites.net/login)
-- **Frontend Admin**: [Live React App](https://sibareactfe-hzcnaxcfdqbyaddc.southafricanorth-01.azurewebsites.net/employee)  
-- **Swagger Docs**: [Swagger UI]([https://your-backend-link/swagger](https://sibapayment-cubwerbvhzfpbmg8.southafricanorth-01.azurewebsites.net/swagger/index.html))  
----
+## 🚀 Live Demo    
+
 ## 👤 Admin Demo Login  
 - **Username**: `admin`  
 - **Password**: `SibaAdmin`
