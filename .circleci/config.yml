@@ -1,1 +1,33 @@
+#  .circleci/config.yml
+version: 2.1
+
+executors:
+  default:
+    docker:
+      - image: cimg/base:stable
+    working_directory: ~/project
+
+jobs:
+  sonarcloud:
+    docker:
+      - image: cimg/openjdk:17.0
+    steps:
+      - checkout
+      - run:
+          name: Run SonarCloud Scan
+          command: |
+            docker run \
+              -e SONAR_TOKEN=$SONAR_TOKEN \
+              -e SONAR_HOST_URL=https://sonarcloud.io \
+              -v $(pwd):/usr/src \
+              sonarsource/sonar-scanner-cli \
+              -Dsonar.projectKey=SibaCode_POE_APDS \
+              -Dsonar.organization=sibacode \
+              -Dsonar.sources=/usr/src
+
+workflows:
+  version: 2
+  scan-workflow:
+    jobs:
+      - sonarcloud
 
