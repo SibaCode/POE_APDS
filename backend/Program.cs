@@ -42,7 +42,7 @@ app.UseHttpsRedirection();
 
 // CORS should come after routing and before authorization
 app.UseRouting();
-app.UseCors("AllowReactApp"); // 🔥 CORS must come after routing and before auth
+app.UseCors("AllowReactApp"); 
 
 app.UseAuthorization();
 
